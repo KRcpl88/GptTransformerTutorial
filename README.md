@@ -1,6 +1,8 @@
 # GptTransformerTutorial
 Advanced tutorial on how to build a transformer model from scratch using PyTorch, generated ENTIRELY by GPT 4.  Use a  transformer model to generate a tutorial on how to build a transformer model!
 
+# More info on Transformers
+If you want more info on transformers, and some tutorials that _weren't_ genertaed by an AI, check out these linksL
 
 ## Keras tutorial:
 https://keras.io/examples/nlp/text_classification_with_transformer/
