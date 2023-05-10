@@ -15,7 +15,7 @@ https://www.tensorflow.org/text/tutorials/transformer
 https://www.kaggle.com/code/ritvik1909/text-classification-attention
 
 
-## General Overview
+## General Overview:
 https://towardsdatascience.com/all-you-need-to-know-about-attention-and-transformers-in-depth-understanding-part-1-552f0b41d021
 
 https://towardsdatascience.com/all-you-need-to-know-about-attention-and-transformers-in-depth-understanding-part-2-bf2403804ada
