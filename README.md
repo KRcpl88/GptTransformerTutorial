@@ -4,7 +4,7 @@ Advanced tutorial on how to build a transformer model from scratch using PyTorch
 [Tensorflow Built in MultiHeadSelfAttention](https://github.com/KRcpl88/GptTransformerTutorial/blob/main/chatgpt-transformer-imdb-basic.ipynb)
 
 
-[Pytorch MultiHeadSelfAttention from Scratch](https://github.com/KRcpl88/GptTransformerTutorial/blob/main/chatgpt-transformer-imdb-advanced.ipynb)
+[Pytorch TransformerBlock and MultiHeadSelfAttention from Scratch](https://github.com/KRcpl88/GptTransformerTutorial/blob/main/chatgpt-transformer-imdb-advanced.ipynb)
 
 
 # More info on Transformers
