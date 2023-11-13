@@ -1,10 +1,10 @@
 # GptTransformerTutorial
 Advanced tutorial on how to build a transformer model from scratch using PyTorch, generated ENTIRELY by GPT 4.  Use a  transformer model to generate a tutorial on how to build a transformer model!
 
-[Tensorflow Built in TransformerBlock](https://github.com/KRcpl88/GptTransformerTutorial/blob/main/chatgpt-transformer-imdb-basic.ipynb)
+[Tensorflow Built in MultiHeadSelfAttention](https://github.com/KRcpl88/GptTransformerTutorial/blob/main/chatgpt-transformer-imdb-basic.ipynb)
 
 
-[Pytorch TransformerBlock from Scratch](https://github.com/KRcpl88/GptTransformerTutorial/blob/main/chatgpt-transformer-imdb-advanced.ipynb)
+[Pytorch MultiHeadSelfAttention from Scratch](https://github.com/KRcpl88/GptTransformerTutorial/blob/main/chatgpt-transformer-imdb-advanced.ipynb)
 
 
 # More info on Transformers
