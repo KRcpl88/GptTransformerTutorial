@@ -14,6 +14,8 @@ If you want more info on transformers, and some tutorials that _weren't_ generat
 https://keras.io/examples/nlp/text_classification_with_transformer/
 
 ## Other good tutorials:
+https://machinelearningmastery.com/how-to-implement-multi-head-attention-from-scratch-in-tensorflow-and-keras/
+
 https://towardsdatascience.com/build-your-own-transformer-from-scratch-using-pytorch-84c850470dcb
 
 https://towardsdatascience.com/illustrated-guide-to-transformers-step-by-step-explanation-f74876522bc0
