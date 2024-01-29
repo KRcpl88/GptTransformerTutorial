@@ -61,6 +61,17 @@ In the self-attention mechanism, each word in the input sequence is initially tr
 The model calculates the attention scores by performing a dot product of the Q vector with all K vectors. These scores determine how much each word in the sequence should contribute to the representation of the current word.
 The attention scores are then used to create a weighted sum of the V vectors, which forms the output of the self-attention layer for each word.
 
+### Difference from a Densely Connected Layer:
+
+A densely connected layer learns a fixed transformation of its input data, applying the same transformation to all inputs. In contrast, the self-attention mechanism dynamically calculates how much each part of the input should contribute to the output based on the input data itself.
+
+The self-attention mechanism can capture relationships and dependencies between words in a sequence, regardless of their distance from each other. A densely connected layer lacks this contextual awareness and processes each input independently.
+
+Self-attention allows the model to focus on different parts of the input sequence differently for each output element, enabling a more nuanced and context-aware processing. Densely connected layers don't offer this level of flexibility as they apply the same transformation to all inputs.
+
+### Summary
+In a multi-head self-attention function, Queries, Keys, and Values are used to dynamically compute how different parts of the input sequence should be emphasized or 'attended to' for each element in the sequence. This differs from a simple densely connected layer, which lacks the ability to capture sequential and contextual relationships within the input data. Self-attention is inherently more flexible and context-aware, making it well-suited for tasks involving sequential data, like natural language processing.
+
 ##  What is the purpose of the FullyConnectedLayer layer
 
 In a Transformer's multi-head self-attention mechanism, the fourth layer, commonly referred to as the FullyConnectedLayer (fc) or sometimes as a linear layer, plays a vital role in integrating and refining the outputs from the self-attention process. Let's break down its purpose:
@@ -87,17 +98,6 @@ The FullyConnectedLayer (fc) introduces additional learnable parameters to the m
 
 ### Summary
 The FullyConnectedLayer (fc) in a Transformer's multi-head self-attention mechanism serves as a critical component for integrating, transforming, and refining the outputs from the attention heads. It adds depth and capacity to the model, enabling complex feature integration and aiding in the model's overall ability to process and understand sequential data effectively.
-
-### Difference from a Densely Connected Layer:
-
-A densely connected layer learns a fixed transformation of its input data, applying the same transformation to all inputs. In contrast, the self-attention mechanism dynamically calculates how much each part of the input should contribute to the output based on the input data itself.
-
-The self-attention mechanism can capture relationships and dependencies between words in a sequence, regardless of their distance from each other. A densely connected layer lacks this contextual awareness and processes each input independently.
-
-Self-attention allows the model to focus on different parts of the input sequence differently for each output element, enabling a more nuanced and context-aware processing. Densely connected layers don't offer this level of flexibility as they apply the same transformation to all inputs.
-
-### Summary
-In a multi-head self-attention function, Queries, Keys, and Values are used to dynamically compute how different parts of the input sequence should be emphasized or 'attended to' for each element in the sequence. This differs from a simple densely connected layer, which lacks the ability to capture sequential and contextual relationships within the input data. Self-attention is inherently more flexible and context-aware, making it well-suited for tasks involving sequential data, like natural language processing.
 
 ## What does the split_heads function do and how does it work?
 
