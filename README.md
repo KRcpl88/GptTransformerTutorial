@@ -32,3 +32,130 @@ https://towardsdatascience.com/all-you-need-to-know-about-attention-and-transfor
 
 https://huggingface.co/learn/nlp-course/chapter1/1?fw=pt
 
+# General infor on Deep Learning
+
+[Deep Learning - Ian Goodfellow, Yoshua Bengio and Aaron Courville, complete book PDF](https://github.com/janishar/mit-deep-learning-book-pdf/blob/master/README.md)
+
+# Additional Information
+
+Each topic was also geenrated using GPT4 by providing the prompt for each section to GPT4
+
+ ## What is the purpose of Queries, Keys, and Values and how are they different from a simple densely connected layer?
+
+The multi-head self-attention mechanism is a crucial component, characterized by three key elements: Queries (Q), Keys (K), and Values (V). Let's explore the purpose of each and how they differ from a simple densely connected (fully connected) neural network layer.
+
+### Queries (Q), Keys (K), and Values (V)
+
+1. **Queries (Q):** 
+Represent the current word (or token) for which we are trying to establish its context and relationships with other words in the input sequence.
+
+1. **Keys (K):**
+Represent all words (or tokens) in the input sequence. The model uses them to determine how much focus or 'attention' each word in the sequence should get in relation to the current query word.
+
+1. **Values (V):**
+Also represent all words in the input sequence, but they are used to construct the output of the self-attention layer. The amount of attention a word gets influences how much its corresponding value contributes to the output.
+
+#### How They Work:
+
+In the self-attention mechanism, each word in the input sequence is initially transformed into Q, K, and V vectors through distinct linear transformations (learnable weights).
+The model calculates the attention scores by performing a dot product of the Q vector with all K vectors. These scores determine how much each word in the sequence should contribute to the representation of the current word.
+The attention scores are then used to create a weighted sum of the V vectors, which forms the output of the self-attention layer for each word.
+
+##  What is the purpose of the FullyConnectedLayer layer
+
+In a Transformer's multi-head self-attention mechanism, the fourth layer, commonly referred to as the FullyConnectedLayer (fc) or sometimes as a linear layer, plays a vital role in integrating and refining the outputs from the self-attention process. Let's break down its purpose:
+
+### Purpose of the FullyConnectedLayer (fc)
+1. **Integration of Attention Heads:**
+After the self-attention mechanism processes the input through multiple heads, the results from each head need to be integrated. The FullyConnectedLayer serves to combine these diverse attention outputs into a single, unified output.
+
+1. **Transformation of Concatenated Outputs:**
+The outputs of the multiple attention heads are concatenated to form a single matrix. The FullyConnectedLayer then applies a linear transformation to this concatenated matrix. This step is crucial for mapping the combined, multi-dimensional attention information back into the original input space (or to a desired output dimensionality).
+
+1. **Maintaining Depth of Representation:**
+The FullyConnectedLayer (fc) ensures that the depth of the model's representation (i.e., the dimensionality of the feature space) is maintained or appropriately transformed. This consistency is essential for stacking multiple layers of the Transformer, allowing each layer to build upon the transformed representations of the previous layer.
+
+1. **Adding Learnable Parameters:**
+The FullyConnectedLayer (fc) introduces additional learnable parameters to the model. These parameters are optimized during training, allowing the model to better integrate and interpret the information gleaned from the multiple attention heads.
+
+1. **Enhancing Model's Capacity:** By combining and transforming the outputs of the attention heads, the FullyConnectedLayer (fc) enhances the model's capacity to capture complex patterns and relationships in the data. This step is critical for the overall performance of the Transformer in tasks like language understanding and generation.
+
+### How the FullyConnectedLayer (fc) Layer Works
+- **Linear Transformation:** The FullyConnectedLayer (fc) typically performs a linear transformation. It takes the concatenated outputs from the attention heads and multiplies them with a weight matrix (learnable parameters), often followed by adding a bias term.
+
+- **Dimensionality Management:** The FullyConnectedLayer (fc) can either preserve the dimensionality of the input or transform it to a different dimensionality, depending on the design of the Transformer model. This flexibility allows the model to be tailored to specific tasks or requirements.
+
+### Summary
+The FullyConnectedLayer (fc) in a Transformer's multi-head self-attention mechanism serves as a critical component for integrating, transforming, and refining the outputs from the attention heads. It adds depth and capacity to the model, enabling complex feature integration and aiding in the model's overall ability to process and understand sequential data effectively.
+
+### Difference from a Densely Connected Layer:
+
+A densely connected layer learns a fixed transformation of its input data, applying the same transformation to all inputs. In contrast, the self-attention mechanism dynamically calculates how much each part of the input should contribute to the output based on the input data itself.
+
+The self-attention mechanism can capture relationships and dependencies between words in a sequence, regardless of their distance from each other. A densely connected layer lacks this contextual awareness and processes each input independently.
+
+Self-attention allows the model to focus on different parts of the input sequence differently for each output element, enabling a more nuanced and context-aware processing. Densely connected layers don't offer this level of flexibility as they apply the same transformation to all inputs.
+
+### Summary
+In a multi-head self-attention function, Queries, Keys, and Values are used to dynamically compute how different parts of the input sequence should be emphasized or 'attended to' for each element in the sequence. This differs from a simple densely connected layer, which lacks the ability to capture sequential and contextual relationships within the input data. Self-attention is inherently more flexible and context-aware, making it well-suited for tasks involving sequential data, like natural language processing.
+
+## What does the split_heads function do and how does it work?
+
+The multi-head self-attention mechanism involves a function often called split_heads or a similar variant. This function is essential for enabling the "multi-head" aspect of the self-attention. Let's delve into what this function does and how it works:
+
+### Purpose of split_heads
+The primary purpose of `split_heads` is to enable the model to simultaneously attend to information from different representation subspaces at different positions. By splitting the attention mechanism into multiple heads, the model can capture a richer variety of features in the input data.
+
+Each head in the multi-head attention can potentially focus on different aspects of the input data, allowing for parallel and diverse feature extraction. This leads to a more comprehensive understanding of the input.
+
+### How split_heads Works
+1. **Input to the Function:**
+    - The function typically takes the matrices Queries, Keys, and Values as inputs. Each of these matrices is the result of transforming the input sequence through different linear layers specific for Queries, Keys, and Values.
+
+1. **Reshaping the Matrices:**
+    - The `split_heads` function reshapes each of Queries, Keys, and Values matrices from their original shape `[batch_size, sequence_length, feature_dimension]` to a new shape `[batch_size, num_heads, sequence_length, feature_dimension/num_heads]`.
+
+    - This reshaping effectively splits the last dimension (feature_dimension) into two dimensions: the number of heads (num_heads) and the reduced feature dimension for each head.
+
+1. **Parallel Attention Processing:**
+
+    - After splitting, each head processes a slice of the original feature dimension, allowing the model to attend to different parts of the feature space independently and in parallel.
+    - This parallel processing enables the model to capture different types of relationships in the data, such as different aspects of semantic meaning in a language model.
+
+1. **Recombination and Output:**
+    - Once each head has processed its respective slice, the outputs are typically concatenated back together and passed through another linear layer to combine the information from all heads.
+
+    - This recombination ensures that the multi-head attention captures a wide range of information from the input while still being able to integrate these diverse signals.
+
+### Summary
+The split_heads function in a Transformer's multi-head self-attention mechanism plays a crucial role in diversifying the attention process. By splitting the Queries, Keys, and Values matrices into multiple heads, the Transformer can process the input data in parallel across different feature subspaces, enhancing its ability to capture complex patterns and relationships in the data. This functionality is fundamental to the Transformer architecture's success in various tasks like language understanding, translation, and generation.
+
+## What is the purpose of the token and position embedding, and how is it different from a token embedding without a position embedding?
+
+### Token Embedding
+
+The concepts of token embeddings and position embeddings play crucial roles in processing sequential data like text. Let's explore each of these components:
+
+Token embeddings convert each token (like a word in a sentence) into a vector of fixed size. This vector representation captures the semantic information of the token, enabling the model to understand and process language.
+
+In practice, each unique token in the vocabulary is assigned a corresponding vector. These vectors are learned during the training process and are adjusted to encapsulate the meanings and relationships of words.
+
+If a transformer model uses only token embeddings, it would be able to understand the meaning of each word but not the order in which they appear. Language is inherently sequential, and the order of words affects the overall meaning of a sentence. Without position information, sentences with the same words in different orders would appear identical to the model.
+
+### Position Embedding
+
+Position embeddings are added to the model to give it an understanding of the order or position of words in a sequence. This is crucial for understanding the structure and meaning of sentences.
+
+Position embeddings are vectors that represent the position of each token in the sequence. These vectors are either learned during training or are predefined and based on mathematical functions (like sine and cosine functions).
+
+When combined with token embeddings, the model not only understands the meaning of each word but also the context provided by their order in the sentence. This combination allows the transformer to process sentences effectively, recognizing patterns and relationships that depend on the sequence of words.
+
+### Difference Between Token Embedding with and without Position Embedding
+
+Without position embeddings, the model loses the sequential context. It cannot differentiate between "The cat sat on the mat" and "The mat sat on the cat," which have vastly different meanings.
+Handling of Sequential Data: Transformers are designed to handle sequential data, and position embeddings are crucial for maintaining the sequence information. Without position embeddings, transformers would be limited in their ability to process language effectively.
+
+In tasks like translation, question-answering, and text generation, understanding the order of words is essential. Position embeddings significantly enhance the transformer's performance in these tasks.
+
+### Summary
+While token embeddings provide meaning to individual words, position embeddings give the model an understanding of the order of those words, which is crucial for most language processing tasks. The combination of both allows transformers to effectively interpret and generate human language.
